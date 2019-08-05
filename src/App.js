@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
 } from 'react-router-dom';
 import './App.css';
 import AboutPage from './pages/AboutPage';
-import CharactersList from './pages/CharactersList';
+import CharactersListPage from './pages/CharactersListPage';
 import CharacterPage from './pages/CharacterPage';
 import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
 import NavBar from './NavBar';
 
 class App extends Component {
@@ -17,10 +19,13 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <div id="page-body">
-            <Route path="/" component={HomePage} exact />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/characters-list" component={CharactersList} />
-            <Route path="/character/:name" component={CharacterPage} />
+            <Switch>
+              <Route path="/" component={HomePage} exact />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/characters-list" component={CharactersListPage} />
+              <Route path="/character/:name" component={CharacterPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
           </div>
         </div>
       </Router>
